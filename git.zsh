@@ -4,10 +4,10 @@
 # ZSH_THEME_GIT_PROMPT_DIRTY  - Text to display if the branch is dirty
 # ZSH_THEME_GIT_PROMPT_CLEAN  - Text to display if the branch is clean
 
-ZSH_THEME_GIT_PROMPT_PREFIX="git:("
-ZSH_THEME_GIT_PROMPT_SUFFIX=")"
-ZSH_THEME_GIT_PROMPT_DIRTY="*"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
+if [ -z "${ZSH_THEME_GIT_PROMPT_PREFIX}" ]; then ZSH_THEME_GIT_PROMPT_PREFIX="git:("; fi
+if [ -z "${ZSH_THEME_GIT_PROMPT_SUFFIX}" ]; then ZSH_THEME_GIT_PROMPT_SUFFIX=")"; fi
+if [ -z "${ZSH_THEME_GIT_PROMPT_DIRTY}" ]; then ZSH_THEME_GIT_PROMPT_DIRTY="*"; fi
+if [ -z "${ZSH_THEME_GIT_PROMPT_CLEAN}" ]; then ZSH_THEME_GIT_PROMPT_CLEAN=""; fi
 
 # get the name of the branch we are on
 function git_prompt_info() {
