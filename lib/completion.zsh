@@ -14,10 +14,15 @@ compinit
 zmodload -i zsh/complist
 
 ## case-insensitive (all),partial-word and then substring completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+if [ "x$CASE_SENSITIVE" = "xtrue" ]; then
+  zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+  unset CASE_SENSITIVE
+else
+  zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+fi
 
 zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' hosts $( sed 's/[, ].*$//' $HOME/.ssh/known_hosts )
+
 
 unsetopt MENU_COMPLETE
 #setopt AUTO_MENU
@@ -30,11 +35,15 @@ zstyle ':completion:*:*:*:*:*' menu yes select
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 zstyle ':completion:*:*:*:*:processes' command "ps -u `whoami` -o pid,user,comm -w -w"
-zstyle ':completion:*:*:(ssh|scp):*:*' hosts `sed 's/^\([^ ,]*\).*$/\1/' ~/.ssh/known_hosts`
 
+# Load known hosts file for auto-completion with ssh and scp commands
+if [ -f ~/.ssh/known_hosts ]; then
+  zstyle ':completion:*' hosts $( sed 's/[, ].*$//' $HOME/.ssh/known_hosts )
+  zstyle ':completion:*:*:(ssh|scp):*:*' hosts `sed 's/^\([^ ,]*\).*$/\1/' ~/.ssh/known_hosts`
+fi
 
-#complete on history
-# zstyle ':completion:*:history-words' stop yes
-# zstyle ':completion:*:history-words' remove-all-dups yes
-# zstyle ':completion:*:history-words' list false
-# zstyle ':completion:*:history-words' menu yes
+# Complete on history
+#zstyle ':completion:*:history-words' stop yes
+#zstyle ':completion:*:history-words' remove-all-dups yes
+#zstyle ':completion:*:history-words' list false
+#zstyle ':completion:*:history-words' menu yes
