@@ -15,8 +15,6 @@ function gemdir {
 # Display the ruby version if it was selected by RVM
 function rvm_ruby_prompt {
   if (declare -f rvm > /dev/null) {
-      if [[ -x $MY_RUBY_HOME ]]
-      then ruby -v | sed 's/\([^(]*\).*/\1/'
-      fi
+    echo "$rvm_ruby_interpreter $rvm_ruby_version"
   }
 }
