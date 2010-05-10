@@ -14,7 +14,13 @@ function gemdir {
 
 # Display the ruby version if it was selected by RVM
 function rvm_ruby_prompt {
+#  if [[ -z "$rvm_ruby_version" ]] ; then
+#    echo "$rvm_ruby_interpreter $rvm_ruby_version"
+#  fi
+
   if (declare -f rvm > /dev/null) {
-    echo "$rvm_ruby_interpreter $rvm_ruby_version"
+    if [[ "$rvm_ruby_interpreter" != 'system' ]] ; then
+      echo "$rvm_ruby_interpreter $rvm_ruby_version"
+    fi
   }
 }
