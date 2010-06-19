@@ -3,7 +3,12 @@ setopt auto_name_dirs
 setopt auto_pushd
 setopt pushd_ignore_dups
 
+alias -- -='cd -'
+alias .='pwd'
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 alias cd..='cd ..'
 alias cd...='cd ../..'
 alias cd....='cd ../../..'
@@ -38,3 +43,9 @@ alias md='mkdir -p'
 alias rd=rmdir
 
 alias d='dirs -v'
+
+# List direcory contents
+alias lsa='ls -lah'
+alias l='ls -la'
+alias ll='ls -alr'
+alias sl=ls
