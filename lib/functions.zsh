@@ -36,7 +36,6 @@ function take() {
   mkdir -p $1
   cd $1
 }
-<<<<<<< HEAD
 
 function tm() {
   cd $1
