@@ -8,6 +8,7 @@ alias rdbm='rake db:migrate'
 alias sc='ruby script/console'
 alias sd='ruby script/server --debugger'
 alias devlog='tail -f log/development.log'
+alias testunit='ruby -I"lib:test"'
 
 function _cap_does_task_list_need_generating () {
   if [ ! -f .cap_tasks~ ]; then return 0;
