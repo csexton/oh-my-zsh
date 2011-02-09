@@ -7,7 +7,7 @@ alias rdbm='rake db:migrate'
 alias sc='ruby script/console'
 alias sd='ruby script/server --debugger'
 alias devlog='tail -f log/development.log'
-alias testunit='ruby -I"lib:test"'
+alias testunit='bundle exec ruby -I"lib:test"'
 
 function remote_console() {
   /usr/bin/env ssh $1 "( cd $2 && ruby script/console production )"
